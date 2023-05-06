@@ -8,17 +8,23 @@
 {
     int a = 5, b = 5;
     Console.WriteLine("1. Napisz program w C#, który stworzy dwie zmienne int i sprawdzi czy są one równe czy nie.");
+
     Console.WriteLine("   Np.:");
     Console.WriteLine($"\ta = {a}");
     Console.WriteLine($"\tb = {b}");
+
     Console.WriteLine("   {0} i {1} {2}są równe", a, b, a == b ? "" : "nie ");
+
     Console.WriteLine("\n   Podaj swoje liczby całkowite:");
+
     Console.Write("\ta = ");
     string? integer1 = Console.ReadLine();
     bool success = int.TryParse(integer1, out a);
+
     Console.Write("\tb = ");
     string? integer2 = Console.ReadLine();
     success &= int.TryParse(integer2, out b);
+
     if (success) Console.WriteLine("   {0} i {1} {2}są równe", a, b, a == b ? "" : "nie ");
     else Console.WriteLine("   Podane wartości nie są liczbami całkowitymi.");
 }
@@ -31,7 +37,9 @@ Console.WriteLine("\n");
 //Rezultat w terminalu: 15 jest liczbą nieparzystą
 {
     Console.WriteLine("2. Napisz program w C#, który sprawdzi czy podana przez użytkownika liczba jest parzysta czy nieparzysta.");
+
     Console.Write("   Podaj liczbę całkowitą: ");
+
     if (int.TryParse(Console.ReadLine(), out int number))
         Console.WriteLine("   {0} jest liczbą {1}", number, number % 2 == 0 ? "parzystą" : "nieparzystą");
     else Console.WriteLine("   Podana wartość nie jest liczbą całkowitą.");
@@ -45,7 +53,9 @@ Console.WriteLine("\n");
 //Rezultat w terminalu: 14 jest liczbą dodatnią
 {
     Console.WriteLine("3. Napisz program w C#, który sprawdzi czy podana przez użytkownika liczba jest dodatnia czy ujemna.");
+
     Console.Write("   Podaj liczbę: ");
+
     if (double.TryParse(Console.ReadLine(), out double userNumber))
         Console.WriteLine("   {0} jest liczbą {1}", userNumber, userNumber > 0 ? "dodatnią" : userNumber < 0 ? "ujemną" : "równą zero");
     else Console.WriteLine("   Podana wartość nie jest liczbą.");
@@ -59,12 +69,14 @@ Console.WriteLine("\n");
 //Rezultat w terminalu: 2016 jest rokiem przestępnym
 {
     Console.WriteLine("4. Napisz program w C#, który sprawdzi czy podany przez użytkownika rok jest rokiem przestępnym.");
+
     Console.Write("   Podaj rok: ");
     if (int.TryParse(Console.ReadLine(), out int year))
     {
         bool isLeap = (year % 4 == 0);
         if (isLeap && (year % 100 == 0))
             isLeap = year % 400 == 0;
+
         Console.WriteLine("   {0} {1}jest rokiem przestępnym", year, isLeap ? "" : "nie ");
     }
     else Console.WriteLine("   Nie udało się odczytać roku.");
@@ -144,14 +156,17 @@ Console.WriteLine("\n");
 //Rezultat w terminalu: 79 jest największa z podanych
 {
     Console.WriteLine("7. Napisz program w C#, który pobierze 3 liczby od użytkownika i sprawdzi, która jest największa");
+
     decimal a = 25, b = 63, c = 79;
     Console.WriteLine("   Np.:");
     Console.WriteLine($"\ta = {a}");
     Console.WriteLine($"\tb = {b}");
     Console.WriteLine($"\tc = {c}");
+
     if (b > a) a = b;
     if (c > a) a = c;
     Console.WriteLine($"   {a} jest największa z podanych");
+
     Console.WriteLine("\n   Podaj swoje liczby");
     Console.Write("\ta = ");
     bool success = decimal.TryParse(Console.ReadLine(), out a);
@@ -159,6 +174,7 @@ Console.WriteLine("\n");
     success &= decimal.TryParse(Console.ReadLine(), out b);
     Console.Write("\tc = ");
     success &= decimal.TryParse(Console.ReadLine(), out c);
+
     if (success)
     {
         if (b > a) a = b;
@@ -192,14 +208,17 @@ Console.WriteLine("\n");
     Console.WriteLine("\tŁączny wynik z 3 przedmiotów powyżej 180");
     Console.WriteLine("\tAlbo");
     Console.WriteLine("\tWynik z matematyki i jednego przedmiotu powyżej 150");
+
     Console.WriteLine("   Np.:");
     float maths = 80, physics = 71, chemistry = 0;
     Console.WriteLine($"\tMatematyka: {maths}");
     Console.WriteLine($"\tFizyka: {physics}");
     Console.WriteLine($"\tChemia: {chemistry}");
+
     if (maths > 70 || physics > 55 || chemistry > 45 || maths + physics + chemistry > 180 || maths + physics > 150 || maths + chemistry > 150)
         Console.WriteLine("   Kandydat dopuszczony do rekrutacji.");
     else Console.WriteLine("   Kandydat nie dopuszczony do rekrutacji.");
+
     Console.WriteLine("\n   Podaj swoje wyniki:");
     Console.Write("\tMatematyka: ");
     bool success = float.TryParse(Console.ReadLine(), out maths);
@@ -207,6 +226,7 @@ Console.WriteLine("\n");
     success &= float.TryParse(Console.ReadLine(), out physics);
     Console.Write("\tChemia: ");
     success &= float.TryParse(Console.ReadLine(), out chemistry);
+
     if (success)
     {
         if (maths > 70 || physics > 55 || chemistry > 45 || maths + physics + chemistry > 180 || maths + physics > 150 || maths + chemistry > 150)
@@ -370,13 +390,18 @@ Console.WriteLine("\n");
         Console.WriteLine("\t3. Mnożenie");
         Console.WriteLine("\t4. Dzielenie");
         Console.Write("Podaj numer operacji do wykonania: ");
+
         _ = int.TryParse(Console.ReadLine(), out int operation);
+
         switch (operation)
         {
             case 1: Console.WriteLine($"Twój wynik to: {a} + {b} = {a + b}"); break;
             case 2: Console.WriteLine($"Twój wynik to: {a} - {b} = {a - b}"); break;
             case 3: Console.WriteLine($"Twój wynik to: {a} * {b} = {a * b}"); break;
-            case 4: Console.WriteLine($"Twój wynik to: {a} / {b} = {a / b}"); break;
+            case 4: 
+                Console.Write($"Twój wynik to: {a} / {b} = ");
+                Console.WriteLine(b == 0 ? "błąd, nie można dzielić przez 0" : a / b);
+                break;
             default: Console.WriteLine("Nie ma operacji o podanym numerze."); break;
         }
     }
